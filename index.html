@@ -49,7 +49,7 @@
       top: 0; left: 0; right: 0; bottom: 0;
       max-width: 480px;
       margin: 0 auto;
-      background: linear-gradient(rgba(20, 16, 12, 0.78), rgba(20, 16, 12, 0.88)), url('photo1.jpg') center/cover no-repeat;
+      background: linear-gradient(rgba(20, 16, 12, 0.78), rgba(20, 16, 12, 0.85)), url('photo1.jpg') center/cover no-repeat;
       z-index: 999;
       display: flex;
       flex-direction: column;
@@ -69,8 +69,8 @@
     .cover-title { font-family: 'Alex Brush', cursive; font-size: 3.8rem; font-weight: 400; margin: 6px 0 0; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.4); }
 
     .cover-photo-wrapper {
-      width: 135px;
-      height: 135px;
+      width: 200px;
+      height: 140px;
       margin: 12px auto;
       padding: 4px;
       border: 2px solid var(--accent-gold-light);
@@ -82,7 +82,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 20px;
+      border-radius: 16px;
       display: block;
     }
 
@@ -100,6 +100,37 @@
       transition: transform 0.2s;
     }
     .btn-open:active { transform: scale(0.96); }
+
+    /* Tombol Musik Melayang */
+    .music-toggle-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent-dark);
+      border: 2px solid var(--accent-gold-light);
+      color: var(--accent-gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 900;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      animation: pulseMusic 2s infinite;
+    }
+
+    .music-toggle-btn.paused {
+      animation: none;
+      opacity: 0.6;
+    }
+
+    @keyframes pulseMusic {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
 
     /* Section & Floating Cards */
     .section { padding: 18px 18px; text-align: center; position: relative; }
@@ -159,12 +190,39 @@
     .ornament-line span { height: 1px; width: 36px; background: var(--accent-gold-light); }
     .ornament-line svg { fill: var(--accent-gold); width: 14px; height: 14px; }
 
+    /* Box Khusus Akad Nikah */
+    .akad-box {
+      background: #faf6f0;
+      border: 1px dashed var(--accent-gold);
+      border-radius: 20px;
+      padding: 22px 18px;
+      margin-bottom: 18px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(184, 142, 76, 0.08);
+    }
+
+    .akad-badge {
+      display: inline-block;
+      background: var(--accent-gold);
+      color: #ffffff;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .akad-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--accent-dark); margin-bottom: 4px; }
+    .akad-info { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+
     /* Countdown Timer Widget */
     .timer-container {
       display: flex;
       justify-content: center;
       gap: 10px;
-      margin: 20px 0 8px;
+      margin: 20px 0 16px;
     }
     .timer-block {
       background: #faf6f0;
@@ -175,6 +233,26 @@
     }
     .timer-number { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--accent-dark); line-height: 1; }
     .timer-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-gold); margin-top: 4px; }
+
+    /* Tombol Google Maps */
+    .btn-maps {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 12px 24px;
+      background: #ffffff;
+      color: var(--accent-dark);
+      border: 1px solid var(--accent-gold);
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(184, 142, 76, 0.12);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-maps:active { transform: scale(0.97); background: #faf6f0; }
 
     /* End Credits Doa Jalan */
     .credits-box {
@@ -219,50 +297,24 @@
       width: 100%; padding: 16px; background: linear-gradient(135deg, #b88e4c, #967138); color: white; border: none; border-radius: 12px; font-weight: 600; font-size: 0.9rem; letter-spacing: 1.5px; cursor: pointer; box-shadow: 0 6px 18px rgba(184, 142, 76, 0.35);
     }
     .btn-submit:active { opacity: 0.9; transform: scale(0.99); }
-
-    /* Box Khusus Akad Nikah (Di Atas Box Utama) */
-.akad-box {
-  background: #faf6f0;
-  border: 1px dashed var(--accent-gold);
-  border-radius: 20px;
-  padding: 22px 18px;
-  margin-bottom: 18px;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 4px 15px rgba(184, 142, 76, 0.08);
-}
-
-.akad-badge {
-  display: inline-block;
-  background: var(--accent-gold);
-  color: #ffffff;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 1.2px;
-  padding: 4px 12px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.akad-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--accent-dark);
-  margin-bottom: 4px;
-}
-
-.akad-info {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
   </style>
 </head>
 <body>
 
 <div class="mobile-container">
+
+  <!-- Audio Element (Saxophone Wedding Instrument) -->
+  <audio id="bgMusic" loop>
+    <!-- File sampel musik Saxophone romantis -->
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-saxophone-wedding-112199.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Tombol Melayang Musik -->
+  <button class="music-toggle-btn" id="musicToggleBtn" onclick="toggleMusic()" title="Putar/Hentikan Musik">
+    <svg id="musicIcon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+    </svg>
+  </button>
 
   <!-- Cover Pembuka / Splash Screen -->
   <div class="cover-overlay" id="coverOverlay">
@@ -285,7 +337,6 @@
   <!-- Main Hero Card -->
   <section class="section hero" style="padding-top: 24px;">
     <div class="card-box hero-card">
-      <!-- Ornamen Sudut SVG -->
       <svg class="corner-ornament corner-tl" viewBox="0 0 50 50"><path d="M0,0 L0,25 C0,10 10,0 25,0 L0,0 Z M8,8 L8,20 C8,12 12,8 20,8 L8,8 Z"/></svg>
       <svg class="corner-ornament corner-tr" viewBox="0 0 50 50"><path d="M0,0 L0,25 C0,10 10,0 25,0 L0,0 Z M8,8 L8,20 C8,12 12,8 20,8 L8,8 Z"/></svg>
       <svg class="corner-ornament corner-bl" viewBox="0 0 50 50"><path d="M0,0 L0,25 C0,10 10,0 25,0 L0,0 Z M8,8 L8,20 C8,12 12,8 20,8 L8,8 Z"/></svg>
@@ -309,7 +360,7 @@
   <!-- Section Waktu & Tempat -->
   <section class="section">
     
-    <!-- BOX TERPISAH: Akad Nikah (Di Atas Box Utama) -->
+    <!-- Box Terpisah: Akad Nikah -->
     <div class="akad-box">
       <span class="akad-badge">Acara Akad Nikah</span>
       <h3 class="akad-title">Akad Nikah</h3>
@@ -317,7 +368,7 @@
       <p class="akad-info" style="font-size: 0.82rem; margin-top: 2px;">Masjid Al-Akbar, Surabaya</p>
     </div>
 
-    <!-- BOX UTAMA: Acara Utama / Tasyakuran (Lengkap dengan Countdown) -->
+    <!-- Box Utama: Tasyakuran / Acara Utama -->
     <div class="card-box">
       <h2 class="section-title">Waktu & Tempat</h2>
       <div class="ornament-line">
@@ -342,7 +393,16 @@
       </div>
 
       <p style="font-size: 1.05rem; font-weight: 600; color: var(--accent-dark); margin-top: 10px;">Pendopo Wooden House</p>
-      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Jl. Mawar Asri No. 45, Surabaya</p>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Jl. Wijaya Kusuma No. 48, Surabaya</p>
+
+      <!-- Tombol Google Maps (Default SMAN 9 Surabaya) -->
+      <a href="https://maps.google.com/?q=SMAN+9+Surabaya" target="_blank" class="btn-maps">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        Buka Petunjuk Lokasi (Google Maps)
+      </a>
+
     </div>
 
   </section>
@@ -421,10 +481,31 @@
   });
 
   function bukaUndangan() {
+    // 1. Sembunyikan Cover
     document.getElementById('coverOverlay').classList.add('opened');
+    
+    // 2. Auto-Play Musik Saxophone
+    const music = document.getElementById('bgMusic');
+    if (music) {
+      music.play().catch(function(err) {
+        console.log("Autoplay diblokir browser:", err);
+      });
+    }
   }
 
-  // Hitung Mundur Acara Pernikahan
+  function toggleMusic() {
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicToggleBtn');
+    if (music.paused) {
+      music.play();
+      btn.classList.remove('paused');
+    } else {
+      music.pause();
+      btn.classList.add('paused');
+    }
+  }
+
+  // Hitung Mundur Acara Pernikahan (23 Januari 2027)
   function startCountdown() {
     const targetDate = new Date("Jan 23, 2027 10:00:00").getTime();
     setInterval(function() {
