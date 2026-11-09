@@ -3,182 +3,305 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Undangan Pernikahan Intimate</title>
+  <title>The Wedding of Aris & Maya</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-color: #fdfbf7;
-      --text-main: #2c302e;
-      --accent-color: #8c7a6b;
+      --bg-color: #faf8f5;
       --card-bg: #ffffff;
+      --text-main: #2b2b2b;
+      --text-muted: #6e6a66;
+      --accent-gold: #b38b4d;
+      --accent-gold-light: #dfc89e;
+      --accent-dark: #3a332a;
+      --shadow: 0 12px 32px rgba(179, 139, 77, 0.08);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #1a1a1a; /* Background gelap untuk pembatas di desktop */
+      background-color: #121212;
       color: var(--text-main);
       display: flex;
       justify-content: center;
       min-height: 100vh;
     }
 
-    /* Container utama dipaksa berukuran layar HP (Mobile Frame) */
+    /* Container Layar HP */
     .mobile-container {
       width: 100%;
-      max-width: 480px; /* Lebar standar layar HP */
+      max-width: 480px;
       background: var(--bg-color);
       min-height: 100vh;
-      box-shadow: 0 0 30px rgba(0,0,0,0.3);
+      box-shadow: 0 0 40px rgba(0,0,0,0.5);
       position: relative;
       overflow-x: hidden;
     }
 
+    /* Overlay Cover Pembuka */
+    .cover-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      max-width: 480px;
+      margin: 0 auto;
+      background: linear-gradient(rgba(30, 25, 20, 0.65), rgba(30, 25, 20, 0.8)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1000&auto=format&fit=crop') center/cover no-repeat;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 60px 24px 48px;
+      color: #ffffff;
+      text-align: center;
+      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    .cover-overlay.opened {
+      transform: translateY(-100%);
+    }
+
+    .cover-subtitle { font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-gold-light); }
+    .cover-title { font-family: 'Alex Brush', cursive; font-size: 3.8rem; font-weight: 400; margin: 12px 0; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+
+    .btn-open {
+      padding: 14px 32px;
+      background: var(--accent-gold);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(179, 139, 77, 0.4);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn-open:active { transform: scale(0.96); background: #9c763d; }
+
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 48px 20px 32px;
+      padding: 56px 24px 36px;
+      position: relative;
     }
-    .hero p.to-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-color); font-weight: 600; }
-    .hero h2.guest-name { font-size: 1.4rem; margin: 6px 0 20px; font-weight: 600; color: #111; }
-    .hero h1.title { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 400; line-height: 1.1; }
-    
+    .hero p.to-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); font-weight: 600; }
+    .hero h2.guest-name { font-size: 1.45rem; margin: 8px 0 24px; font-weight: 600; color: var(--accent-dark); }
+    .hero h1.title { font-family: 'Alex Brush', cursive; font-size: 3.6rem; color: var(--accent-gold); font-weight: 400; line-height: 1.2; }
+
+    /* Frame Foto Estetik */
+    .img-wrapper {
+      position: relative;
+      margin: 24px 0;
+      padding: 8px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(179, 139, 77, 0.2);
+    }
+
     .gallery-img {
       width: 100%;
-      height: 340px;
+      height: 380px;
       object-fit: cover;
-      border-radius: 16px;
-      margin: 16px 0;
+      border-radius: 14px;
+      display: block;
     }
 
-    /* Section Global */
-    .section { padding: 36px 20px; text-align: center; border-bottom: 1px solid #f0eae1; }
-    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 12px; color: var(--accent-color); }
+    /* Section Component & Card */
+    .section { padding: 36px 24px; text-align: center; position: relative; }
+    .card-box {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 32px 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(179, 139, 77, 0.15);
+      position: relative;
+    }
 
-    /* End Credits Doa Jalan */
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; margin-bottom: 8px; color: var(--accent-dark); font-weight: 600; }
+    .ornament-line { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 12px 0 20px; }
+    .ornament-line span { height: 1px; width: 40px; background: var(--accent-gold-light); }
+    .ornament-line svg { fill: var(--accent-gold); width: 14px; height: 14px; }
+
+    /* Credits Doa Film */
     .credits-box {
-      height: 200px;
+      height: 220px;
       overflow: hidden;
       position: relative;
-      background: #faf7f2;
-      border-radius: 16px;
+      background: #fdfbf7;
+      border-radius: 14px;
       padding: 16px;
-      margin-top: 12px;
-      border: 1px solid #efe8de;
+      border: 1px dashed var(--accent-gold-light);
     }
 
     .credits-track {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      animation: rollCredits 20s linear infinite;
+      gap: 22px;
+      animation: rollCredits 22s linear infinite;
     }
 
-    /* Pause saat layar tersentuh jari */
-    .credits-box:active .credits-track {
-      animation-play-state: paused;
-    }
+    .credits-box:active .credits-track { animation-play-state: paused; }
 
     .credit-item { text-align: center; }
-    .credit-name { font-weight: 600; font-size: 0.85rem; color: var(--accent-color); text-transform: uppercase; letter-spacing: 1px; }
-    .credit-text { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; margin-top: 2px; color: #4a4a4a; line-height: 1.3; }
+    .credit-name { font-weight: 600; font-size: 0.85rem; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; }
+    .credit-text { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-style: italic; margin-top: 4px; color: #444; line-height: 1.35; }
 
     @keyframes rollCredits {
       0% { transform: translateY(100%); }
       100% { transform: translateY(-100%); }
     }
 
-    /* Form RSVP Mobile Friendly */
-    .form-group { margin-bottom: 14px; text-align: left; }
-    .form-group label { display: block; font-size: 0.8rem; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    /* Form Design */
+    .form-group { margin-bottom: 16px; text-align: left; }
+    .form-group label { display: block; font-size: 0.78rem; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--accent-dark); }
     .form-group input, .form-group select, .form-group textarea {
-      width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 10px; font-family: inherit; font-size: 0.95rem; background: #fff;
+      width: 100%; padding: 14px; border: 1px solid #e2dad0; border-radius: 10px; font-family: inherit; font-size: 0.95rem; background: #fff; color: #333; outline: none; transition: border 0.2s;
     }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--accent-gold);
+    }
+
     .btn-submit {
-      width: 100%; padding: 16px; background: var(--accent-color); color: white; border: none; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer;
+      width: 100%; padding: 16px; background: linear-gradient(135deg, #b38b4d, #967138); color: white; border: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem; letter-spacing: 1px; cursor: pointer; box-shadow: 0 4px 14px rgba(179, 139, 77, 0.3);
     }
-    .btn-submit:active { opacity: 0.85; }
+    .btn-submit:active { opacity: 0.9; transform: scale(0.99); }
   </style>
 </head>
 <body>
 
 <div class="mobile-container">
-  
-  <!-- Cover & Header Personal -->
+
+  <!-- Cover Pembuka -->
+  <div class="cover-overlay" id="coverOverlay">
+    <div>
+      <p class="cover-subtitle">WEDDING INVITATION</p>
+      <h1 class="cover-title">Aris & Maya</h1>
+    </div>
+    
+    <div>
+      <p style="font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 6px; opacity: 0.8;">UNTUK SAUDARA/I:</p>
+      <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 24px; color: var(--accent-gold-light);" id="coverNamaTamu">Tamu Undangan</h3>
+      <button class="btn-open" onclick="bukaUndangan()">BUKA UNDANGAN</button>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
   <section class="hero">
     <p class="to-label">Kepada Yth. Bapak/Ibu/Saudara/i</p>
     <h2 class="guest-name" id="displayNamaTamu">Tamu Undangan</h2>
     
-    <img src="photo1.jpg" alt="Foto Pasangan" class="gallery-img">
-    
+    <div class="img-wrapper">
+      <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop" alt="Foto Pasangan" class="gallery-img">
+    </div>
+
+    <p style="font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); margin-top: 8px;">The Wedding of</p>
     <h1 class="title">Aris & Maya</h1>
-    <p style="margin-top: 10px; color: #666; font-size: 0.95rem;">Kami mengundang Anda untuk hadir dalam momen bahagia pernikahan intimate kami.</p>
+    <p style="margin-top: 10px; color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">Dengan penuh rasa syukur, kami mengundang Anda untuk berbagi kebahagiaan bersama kami.</p>
   </section>
 
-  <!-- Detail Acara -->
+  <!-- Detail Waktu & Tempat -->
   <section class="section">
-    <h2 class="section-title">Waktu & Tempat</h2>
-    <p><b>Sabtu, 12 Desember 2026</b></p>
-    <p style="margin-bottom: 14px; font-size: 0.9rem;">Pukul 10.00 WIB - Selesai</p>
-    
-    <img src="photo2.jpg" alt="Detail Tempat" class="gallery-img">
-    
-    <p style="font-weight: 600;">Pendopo Wooden House</p>
-    <p style="font-size: 0.85rem; color: #666;">Jl. Mawar Asri No. 45, Surabaya</p>
+    <div class="card-box">
+      <h2 class="section-title">Waktu & Tempat</h2>
+      <div class="ornament-line">
+        <span></span>
+        <svg viewBox="0 0 24 24"><path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/></svg>
+        <span></span>
+      </div>
+
+      <p style="font-size: 1.1rem; font-weight: 600; color: var(--accent-dark);">Sabtu, 12 Desember 2026</p>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px;">Pukul 10.00 WIB - Selesai</p>
+      
+      <div class="img-wrapper">
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800&auto=format&fit=crop" alt="Tempat Acara" class="gallery-img" style="height: 240px;">
+      </div>
+
+      <p style="font-size: 1rem; font-weight: 600; color: var(--accent-dark); margin-top: 12px;">Pendopo Wooden House</p>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Jl. Mawar Asri No. 45, Surabaya</p>
+    </div>
   </section>
 
-  <!-- Section Credits Doa Berjalan -->
+  <!-- Section Credits Doa Jalan -->
   <section class="section">
-    <h2 class="section-title">Doa & Restu Keluarga</h2>
-    <p style="font-size: 0.75rem; color: #888; margin-bottom: 8px;">(Tahan sentuhan pada kotak untuk berhenti sejenak)</p>
-    
-    <div class="credits-box">
-      <div class="credits-track" id="creditsContainer">
-        <div class="credit-item">
-          <div class="credit-name">Memuat Doa...</div>
+    <div class="card-box">
+      <h2 class="section-title">Doa & Restu</h2>
+      <div class="ornament-line">
+        <span></span>
+        <svg viewBox="0 0 24 24"><path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/></svg>
+        <span></span>
+      </div>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 14px;">(Sentuh & tahan kotak untuk menghentikan teks)</p>
+      
+      <div class="credits-box">
+        <div class="credits-track" id="creditsContainer">
+          <div class="credit-item">
+            <div class="credit-name">Memuat Doa...</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Foto Ketiga -->
-  <section class="section">
-    <img src="photo3.jpg" alt="Foto Momen" class="gallery-img">
+  <section class="section" style="padding-top: 0;">
+    <div class="img-wrapper">
+      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=800&auto=format&fit=crop" alt="Foto Momen" class="gallery-img" style="height: 280px;">
+    </div>
   </section>
 
-  <!-- Form Konfirmasi & Doa -->
-  <section class="section">
-    <h2 class="section-title">Konfirmasi Kehadiran</h2>
-    <form id="rsvpForm">
-      <div class="form-group">
-        <label>Nama Anda</label>
-        <input type="text" id="inputNama" required readonly>
+  <!-- Form Konfirmasi Kehadiran -->
+  <section class="section" style="padding-top: 0; padding-bottom: 60px;">
+    <div class="card-box">
+      <h2 class="section-title">Konfirmasi RSVP</h2>
+      <div class="ornament-line">
+        <span></span>
+        <svg viewBox="0 0 24 24"><path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/></svg>
+        <span></span>
       </div>
-      <div class="form-group">
-        <label>Konfirmasi Kehadiran</label>
-        <select id="inputKehadiran">
-          <option value="Hadir">Saya Akan Hadir</option>
-          <option value="Tidak Hadir">Maaf, Tidak Bisa Hadir</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Jumlah Tamu</label>
-        <input type="number" id="inputJumlah" value="1" min="1" max="5">
-      </div>
-      <div class="form-group">
-        <label>Doa & Ucapan Terbaik</label>
-        <textarea id="inputDoa" rows="3" placeholder="Tuliskan doa terbaik untuk kedua mempelai..." required></textarea>
-      </div>
-      <button type="submit" class="btn-submit" id="btnSubmit">Kirim Konfirmasi & Doa</button>
-    </form>
+
+      <form id="rsvpForm">
+        <div class="form-group">
+          <label>Nama Anda</label>
+          <input type="text" id="inputNama" required readonly>
+        </div>
+        <div class="form-group">
+          <label>Konfirmasi Kehadiran</label>
+          <select id="inputKehadiran">
+            <option value="Hadir">Saya Akan Hadir</option>
+            <option value="Tidak Hadir">Maaf, Tidak Bisa Hadir</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Jumlah Tamu</label>
+          <input type="number" id="inputJumlah" value="1" min="1" max="5">
+        </div>
+        <div class="form-group">
+          <label>Doa & Ucapan Terbaik</label>
+          <textarea id="inputDoa" rows="3" placeholder="Tuliskan doa ucapan untuk kedua mempelai..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit" id="btnSubmit">KIRIM KONFIRMASI & DOA</button>
+      </form>
+    </div>
   </section>
 
 </div>
 
 <script src="script.js"></script>
+<script>
+  // Script khusus handle nama di cover dan animasi buka undangan
+  document.addEventListener('DOMContentLoaded', function() {
+    const nama = new URLSearchParams(window.location.search).get('to') || "Tamu Undangan";
+    document.getElementById('coverNamaTamu').textContent = nama;
+  });
+
+  function bukaUndangan() {
+    document.getElementById('coverOverlay').classList.add('opened');
+  }
+</script>
 </body>
 </html>
