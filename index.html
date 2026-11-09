@@ -6,25 +6,26 @@
   <title>The Wedding of Aris & Maya</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-color: #faf8f5;
+      --bg-color: #f7f3ed;
       --card-bg: #ffffff;
-      --text-main: #2b2b2b;
-      --text-muted: #6e6a66;
-      --accent-gold: #b38b4d;
-      --accent-gold-light: #dfc89e;
-      --accent-dark: #3a332a;
-      --shadow: 0 12px 32px rgba(179, 139, 77, 0.08);
+      --text-main: #2b2825;
+      --text-muted: #736c64;
+      --accent-gold: #b88e4c;
+      --accent-gold-light: #e8d7bb;
+      --accent-dark: #3a3227;
+      --shadow-soft: 0 10px 30px rgba(184, 142, 76, 0.12);
+      --shadow-card: 0 15px 35px rgba(0, 0, 0, 0.06);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #121212;
+      background-color: #0f0f10;
       color: var(--text-main);
       display: flex;
       justify-content: center;
@@ -36,9 +37,10 @@
       max-width: 480px;
       background: var(--bg-color);
       min-height: 100vh;
-      box-shadow: 0 0 40px rgba(0,0,0,0.5);
+      box-shadow: 0 0 50px rgba(0,0,0,0.6);
       position: relative;
       overflow-x: hidden;
+      padding-bottom: 40px;
     }
 
     /* Cover Pembuka / Splash Screen */
@@ -47,7 +49,7 @@
       top: 0; left: 0; right: 0; bottom: 0;
       max-width: 480px;
       margin: 0 auto;
-      background: linear-gradient(rgba(30, 25, 20, 0.75), rgba(30, 25, 20, 0.85)), url('photo1.jpg') center/cover no-repeat;
+      background: linear-gradient(rgba(20, 16, 12, 0.78), rgba(20, 16, 12, 0.88)), url('photo1.jpg') center/cover no-repeat;
       z-index: 999;
       display: flex;
       flex-direction: column;
@@ -63,17 +65,16 @@
       transform: translateY(-100%);
     }
 
-    .cover-subtitle { font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-gold-light); }
-    .cover-title { font-family: 'Alex Brush', cursive; font-size: 3.8rem; font-weight: 400; margin: 8px 0 0; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+    .cover-subtitle { font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-gold-light); }
+    .cover-title { font-family: 'Alex Brush', cursive; font-size: 3.8rem; font-weight: 400; margin: 6px 0 0; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.4); }
 
-    /* Frame Foto Center di Splash Screen */
     .cover-photo-wrapper {
-      width: 140px;
-      height: 140px;
+      width: 135px;
+      height: 135px;
       margin: 12px auto;
       padding: 4px;
       border: 2px solid var(--accent-gold-light);
-      border-radius: 50%;
+      border-radius: 20px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.4);
     }
 
@@ -86,74 +87,104 @@
     }
 
     .btn-open {
-      padding: 14px 32px;
-      background: var(--accent-gold);
+      padding: 14px 34px;
+      background: linear-gradient(135deg, #b88e4c, #967138);
       color: #fff;
       border: none;
       border-radius: 30px;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(179, 139, 77, 0.4);
-      transition: transform 0.2s, background 0.2s;
+      box-shadow: 0 6px 20px rgba(184, 142, 76, 0.4);
+      transition: transform 0.2s;
     }
-    .btn-open:active { transform: scale(0.96); background: #9c763d; }
+    .btn-open:active { transform: scale(0.96); }
 
-    /* Section Hero */
-    .hero {
-      text-align: center;
-      padding: 48px 24px 32px;
-      position: relative;
-    }
-    .hero p.to-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); font-weight: 600; }
-    .hero h2.guest-name { font-size: 1.45rem; margin: 6px 0 20px; font-weight: 600; color: var(--accent-dark); }
-    .hero h1.title { font-family: 'Alex Brush', cursive; font-size: 3.6rem; color: var(--accent-gold); font-weight: 400; line-height: 1.2; }
-
-    /* Frame Foto Utama */
-    .img-wrapper {
-      position: relative;
-      margin: 20px 0;
-      padding: 8px;
+    /* Section & Floating Cards */
+    .section { padding: 18px 18px; text-align: center; position: relative; }
+    
+    .card-box {
       background: var(--card-bg);
+      border-radius: 24px;
+      padding: 32px 20px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(184, 142, 76, 0.2);
+      position: relative;
+    }
+
+    /* Decorative Corner SVG */
+    .corner-ornament {
+      position: absolute;
+      width: 42px;
+      height: 42px;
+      opacity: 0.55;
+      fill: var(--accent-gold);
+    }
+    .corner-tl { top: 12px; left: 12px; }
+    .corner-tr { top: 12px; right: 12px; transform: scaleX(-1); }
+    .corner-bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
+    .corner-br { bottom: 12px; right: 12px; transform: scale(-1); }
+
+    /* Hero Section */
+    .hero-card {
+      background: linear-gradient(180deg, #ffffff 0%, #fcfaf7 100%);
+    }
+
+    .hero p.to-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-gold); font-weight: 600; }
+    .hero h2.guest-name { font-size: 1.4rem; margin: 4px 0 18px; font-weight: 600; color: var(--accent-dark); }
+    .hero h1.title { font-family: 'Alex Brush', cursive; font-size: 3.8rem; color: var(--accent-gold); font-weight: 400; line-height: 1.1; margin: 8px 0; }
+
+    .img-frame {
+      position: relative;
+      margin: 16px 0 20px;
+      padding: 6px;
+      background: #fff;
       border-radius: 20px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(179, 139, 77, 0.2);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--accent-gold-light);
     }
 
     .gallery-img {
       width: 100%;
-      height: 360px;
+      height: 340px;
       object-fit: cover;
-      border-radius: 14px;
+      border-radius: 16px;
       display: block;
     }
 
-    /* Section & Cards */
-    .section { padding: 24px 20px; text-align: center; position: relative; }
-    .card-box {
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 28px 18px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(179, 139, 77, 0.15);
-      position: relative;
-    }
-
-    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; margin-bottom: 4px; color: var(--accent-dark); font-weight: 600; }
-    .ornament-line { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 8px 0 16px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--accent-dark); font-weight: 600; line-height: 1.1; }
+    
+    .ornament-line { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0 18px; }
     .ornament-line span { height: 1px; width: 36px; background: var(--accent-gold-light); }
     .ornament-line svg { fill: var(--accent-gold); width: 14px; height: 14px; }
 
-    /* End Credits Doa */
+    /* Countdown Timer Widget */
+    .timer-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0 8px;
+    }
+    .timer-block {
+      background: #faf6f0;
+      border: 1px solid var(--accent-gold-light);
+      border-radius: 12px;
+      padding: 10px 8px;
+      min-width: 65px;
+    }
+    .timer-number { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--accent-dark); line-height: 1; }
+    .timer-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-gold); margin-top: 4px; }
+
+    /* End Credits Doa Jalan */
     .credits-box {
       height: 220px;
       overflow: hidden;
       position: relative;
-      background: #fdfbf7;
-      border-radius: 14px;
-      padding: 16px;
-      border: 1px dashed var(--accent-gold-light);
+      background: #faf6f0;
+      border-radius: 16px;
+      padding: 18px 14px;
+      border: 1px dashed var(--accent-gold);
     }
 
     .credits-track {
@@ -174,18 +205,18 @@
       100% { transform: translateY(-100%); }
     }
 
-    /* Form Design */
+    /* Form Styles */
     .form-group { margin-bottom: 16px; text-align: left; }
-    .form-group label { display: block; font-size: 0.78rem; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--accent-dark); }
+    .form-group label { display: block; font-size: 0.75rem; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-dark); }
     .form-group input, .form-group select, .form-group textarea {
-      width: 100%; padding: 14px; border: 1px solid #e2dad0; border-radius: 10px; font-family: inherit; font-size: 0.95rem; background: #fff; color: #333; outline: none; transition: border 0.2s;
+      width: 100%; padding: 14px; border: 1px solid #e0d7cb; border-radius: 12px; font-family: inherit; font-size: 0.95rem; background: #faf9f6; color: #333; outline: none; transition: border 0.2s;
     }
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      border-color: var(--accent-gold);
+      border-color: var(--accent-gold); background: #fff;
     }
 
     .btn-submit {
-      width: 100%; padding: 16px; background: linear-gradient(135deg, #b38b4d, #967138); color: white; border: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem; letter-spacing: 1px; cursor: pointer; box-shadow: 0 4px 14px rgba(179, 139, 77, 0.3);
+      width: 100%; padding: 16px; background: linear-gradient(135deg, #b88e4c, #967138); color: white; border: none; border-radius: 12px; font-weight: 600; font-size: 0.9rem; letter-spacing: 1.5px; cursor: pointer; box-shadow: 0 6px 18px rgba(184, 142, 76, 0.35);
     }
     .btn-submit:active { opacity: 0.9; transform: scale(0.99); }
   </style>
@@ -201,33 +232,42 @@
       <h1 class="cover-title">Aris & Maya</h1>
     </div>
     
-    <!-- Foto Foto Center -->
     <div class="cover-photo-wrapper">
       <img src="photo1.jpg" alt="Foto Cover" class="cover-photo">
     </div>
     
     <div>
-      <p style="font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 6px; opacity: 0.85;">UNTUK SAUDARA/I:</p>
-      <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 20px; color: var(--accent-gold-light);" id="coverNamaTamu">Tamu Undangan</h3>
+      <p style="font-size: 0.78rem; letter-spacing: 1.5px; margin-bottom: 6px; opacity: 0.85;">UNTUK SAUDARA/I:</p>
+      <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 22px; color: var(--accent-gold-light);" id="coverNamaTamu">Tamu Undangan</h3>
       <button class="btn-open" onclick="bukaUndangan()">BUKA UNDANGAN</button>
     </div>
   </div>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <p class="to-label">Kepada Yth. Bapak/Ibu/Saudara/i</p>
-    <h2 class="guest-name" id="displayNamaTamu">Tamu Undangan</h2>
-    
-    <div class="img-wrapper">
-      <img src="photo1.jpg" alt="Foto Pasangan" class="gallery-img">
-    </div>
+  <!-- Main Hero Card -->
+  <section class="section hero" style="padding-top: 24px;">
+    <div class="card-box hero-card">
+      <!-- Ornamen Sudut SVG -->
+      <svg class="corner-ornament corner-tl" viewBox="0 0 50 50"><path d="M0,0 L0,25 C0,10 10,0 25,0 L0,0 Z M8,8 L8,20 C8,12 12,8 20,8 L8,8 Z"/></svg>
+      <svg class="corner-ornament corner-tr" viewBox="0 0 50 50"><path d="M0,0 L0,25 C0,10 10,0 25,0 L0,0 Z M8,8 L8,20 C8,12 12,8 20,8 L8,8 Z"/></svg>
+      <svg class="corner-ornament corner-bl" viewBox="0 0 50 50"><path d="M0,0 L0,25 C0,10 10,0 25,0 L0,0 Z M8,8 L8,20 C8,12 12,8 20,8 L8,8 Z"/></svg>
+      <svg class="corner-ornament corner-br" viewBox="0 0 50 50"><path d="M0,0 L0,25 C0,10 10,0 25,0 L0,0 Z M8,8 L8,20 C8,12 12,8 20,8 L8,8 Z"/></svg>
 
-    <p style="font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); margin-top: 8px;">The Wedding of</p>
-    <h1 class="title">Aris & Maya</h1>
-    <p style="margin-top: 10px; color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">Dengan penuh rasa syukur, kami mengundang Anda untuk berbagi kebahagiaan bersama kami.</p>
+      <p class="to-label">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+      <h2 class="guest-name" id="displayNamaTamu">Tamu Undangan</h2>
+      
+      <div class="img-frame">
+        <img src="photo1.jpg" alt="Foto Pasangan" class="gallery-img">
+      </div>
+
+      <p style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); margin-top: 6px;">The Wedding of</p>
+      <h1 class="title">Aris & Maya</h1>
+      <p style="margin-top: 8px; color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; font-style: italic;">
+        "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya."
+      </p>
+    </div>
   </section>
 
-  <!-- Detail Waktu & Tempat -->
+  <!-- Section Waktu & Tempat + Countdown -->
   <section class="section">
     <div class="card-box">
       <h2 class="section-title">Waktu & Tempat</h2>
@@ -237,14 +277,22 @@
         <span></span>
       </div>
 
-      <p style="font-size: 1.1rem; font-weight: 600; color: var(--accent-dark);">Sabtu, 12 Desember 2026</p>
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px;">Pukul 10.00 WIB - Selesai</p>
+      <p style="font-size: 1.15rem; font-weight: 600; color: var(--accent-dark);">Sabtu, 12 Desember 2026</p>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">Pukul 10.00 WIB - Selesai</p>
       
-      <div class="img-wrapper">
-        <img src="photo2.jpg" alt="Tempat Acara" class="gallery-img" style="height: 240px;">
+      <!-- Countdown Widget -->
+      <div class="timer-container">
+        <div class="timer-block"><div class="timer-number" id="cdHari">00</div><div class="timer-label">Hari</div></div>
+        <div class="timer-block"><div class="timer-number" id="cdJam">00</div><div class="timer-label">Jam</div></div>
+        <div class="timer-block"><div class="timer-number" id="cdMenit">00</div><div class="timer-label">Menit</div></div>
+        <div class="timer-block"><div class="timer-number" id="cdDetik">00</div><div class="timer-label">Detik</div></div>
       </div>
 
-      <p style="font-size: 1rem; font-weight: 600; color: var(--accent-dark); margin-top: 12px;">Pendopo Wooden House</p>
+      <div class="img-frame" style="margin-top: 18px;">
+        <img src="photo2.jpg" alt="Tempat Acara" class="gallery-img" style="height: 220px;">
+      </div>
+
+      <p style="font-size: 1.05rem; font-weight: 600; color: var(--accent-dark); margin-top: 10px;">Pendopo Wooden House</p>
       <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Jl. Mawar Asri No. 45, Surabaya</p>
     </div>
   </section>
@@ -258,7 +306,7 @@
         <svg viewBox="0 0 24 24"><path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/></svg>
         <span></span>
       </div>
-      <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 14px;">(Sentuh & tahan kotak untuk menghentikan teks)</p>
+      <p style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 14px;">(Sentuh & tahan kotak untuk menghentikan guliran)</p>
       
       <div class="credits-box">
         <div class="credits-track" id="creditsContainer">
@@ -272,13 +320,13 @@
 
   <!-- Foto Ketiga -->
   <section class="section" style="padding-top: 0;">
-    <div class="img-wrapper">
-      <img src="photo3.jpg" alt="Foto Momen" class="gallery-img" style="height: 280px;">
+    <div class="img-frame">
+      <img src="photo3.jpg" alt="Foto Momen" class="gallery-img" style="height: 260px;">
     </div>
   </section>
 
-  <!-- Form Konfirmasi Kehadiran -->
-  <section class="section" style="padding-top: 0; padding-bottom: 50px;">
+  <!-- Form Konfirmasi RSVP -->
+  <section class="section" style="padding-top: 0;">
     <div class="card-box">
       <h2 class="section-title">Konfirmasi RSVP</h2>
       <div class="ornament-line">
@@ -319,10 +367,26 @@
   document.addEventListener('DOMContentLoaded', function() {
     const nama = new URLSearchParams(window.location.search).get('to') || "Tamu Undangan";
     document.getElementById('coverNamaTamu').textContent = nama;
+    startCountdown();
   });
 
   function bukaUndangan() {
     document.getElementById('coverOverlay').classList.add('opened');
+  }
+
+  // Hitung Mundur Acara Pernikahan
+  function startCountdown() {
+    const targetDate = new Date("Dec 12, 2026 10:00:00").getTime();
+    setInterval(function() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      if (diff > 0) {
+        document.getElementById('cdHari').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        document.getElementById('cdJam').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        document.getElementById('cdMenit').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        document.getElementById('cdDetik').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+      }
+    }, 1000);
   }
 </script>
 </body>
