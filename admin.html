@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Generator Undangan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f4f4f5; padding: 20px; display: flex; justify-content: center; }
+    .card { background: white; width: 100%; max-width: 420px; padding: 24px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    h2 { font-size: 1.25rem; margin-bottom: 16px; color: #18181b; }
+    label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #52525b; }
+    input { width: 100%; padding: 12px; border: 1px solid #d4d4d8; border-radius: 8px; margin-bottom: 16px; font-size: 1rem; }
+    button { width: 100%; padding: 14px; background: #27272a; color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; }
+    button:active { background: #3f3f46; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Generator Link WA (Admin)</h2>
+  
+  <label for="namaTamu">Nama Tamu / Relasi:</label>
+  <input type="text" id="namaTamu" placeholder="Contoh: Paman Ahmad & Keluarga">
+  
+  <button onclick="buatDanCopyLink()">Buat & Copy Format WA</button>
+</div>
+
+<script>
+function buatDanCopyLink() {
+  const nama = document.getElementById('namaTamu').value.trim();
+  if (!nama) return alert('Masukkan nama tamu dulu!');
+  
+  // Mengambil URL domain tanpa /admin.html
+  const baseUrl = window.location.origin;
+  const linkPersonal = `${baseUrl}/?to=${encodeURIComponent(nama)}`;
+  
+  const pesanWA = `Halo ${nama},\n\nKami mengundang Anda untuk hadir di acara pernikahan kami. Detail acara & konfirmasi kehadiran dapat dilihat pada link berikut:\n${linkPersonal}\n\nTerima kasih!`;
+  
+  navigator.clipboard.writeText(pesanWA);
+  alert(`Pesan WhatsApp untuk "${nama}" berhasil di-copy!\n\nTinggal buka WA dan Paste.`);
+  document.getElementById('namaTamu').value = '';
+}
+</script>
+
+</body>
+</html>
