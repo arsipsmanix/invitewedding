@@ -219,6 +219,45 @@
       width: 100%; padding: 16px; background: linear-gradient(135deg, #b88e4c, #967138); color: white; border: none; border-radius: 12px; font-weight: 600; font-size: 0.9rem; letter-spacing: 1.5px; cursor: pointer; box-shadow: 0 6px 18px rgba(184, 142, 76, 0.35);
     }
     .btn-submit:active { opacity: 0.9; transform: scale(0.99); }
+
+    /* Box Khusus Akad Nikah (Di Atas Box Utama) */
+.akad-box {
+  background: #faf6f0;
+  border: 1px dashed var(--accent-gold);
+  border-radius: 20px;
+  padding: 22px 18px;
+  margin-bottom: 18px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(184, 142, 76, 0.08);
+}
+
+.akad-badge {
+  display: inline-block;
+  background: var(--accent-gold);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.akad-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+  margin-bottom: 4px;
+}
+
+.akad-info {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
   </style>
 </head>
 <body>
@@ -267,8 +306,18 @@
     </div>
   </section>
 
-  <!-- Section Waktu & Tempat + Countdown -->
+  <!-- Section Waktu & Tempat -->
   <section class="section">
+    
+    <!-- BOX TERPISAH: Akad Nikah (Di Atas Box Utama) -->
+    <div class="akad-box">
+      <span class="akad-badge">Acara Akad Nikah</span>
+      <h3 class="akad-title">Akad Nikah</h3>
+      <p class="akad-info"><b>Jumat, 22 Januari 2027</b> • Pukul 08.00 WIB</p>
+      <p class="akad-info" style="font-size: 0.82rem; margin-top: 2px;">Masjid Al-Akbar, Surabaya</p>
+    </div>
+
+    <!-- BOX UTAMA: Acara Utama / Tasyakuran (Lengkap dengan Countdown) -->
     <div class="card-box">
       <h2 class="section-title">Waktu & Tempat</h2>
       <div class="ornament-line">
@@ -295,6 +344,7 @@
       <p style="font-size: 1.05rem; font-weight: 600; color: var(--accent-dark); margin-top: 10px;">Pendopo Wooden House</p>
       <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Jl. Mawar Asri No. 45, Surabaya</p>
     </div>
+
   </section>
 
   <!-- Section Credits Doa Jalan -->
